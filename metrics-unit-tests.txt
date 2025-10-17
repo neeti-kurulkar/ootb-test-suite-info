@@ -1,0 +1,179 @@
+(base) PS C:\Users\NEETI\Desktop\OutOfTheBlue\saas-backend> npm run test:unit
+
+> saas-backend@0.15.51 test:unit
+> jest --config jest.config.unit.js
+
+ PASS  __tests__/unit/controllers/metrics.controller.test.js
+  Metrics Controller - Formatting Functions
+    formatImpactValue                                                                                                                  
+      Edge Cases - Invalid Values                                                                                                      
+        √ should return "0" for zero value (1 ms)                                                                                      
+        √ should return "0" for null value (1 ms)                                                                                      
+        √ should return "0" for undefined value                                                                                        
+        √ should return "0" for NaN value                                                                                              
+      Basic Formatting - Small Numbers (<1000)                                                                                         
+        √ should format whole number less than 1000 without suffix                                                                     
+        √ should format decimal number less than 1000                                                                                  
+        √ should remove trailing zeros for values less than 1000                                                                       
+        √ should format single digit number                                                                                            
+      Thousands (K) Formatting                                                                                                         
+        √ formatImpactValue(1000) should return "1k"                                                                                   
+        √ formatImpactValue(1500) should return "1.5k"                                                                                 
+        √ formatImpactValue(1234) should return "1.2k" (1 ms)                                                                          
+        √ formatImpactValue(9999) should return "10k"                                                                                  
+        √ formatImpactValue(50000) should return "50k"                                                                                 
+        √ formatImpactValue(999999) should return "1000k"                                                                              
+      Millions (M) Formatting                                                                                                          
+        √ formatImpactValue(1000000) should return "1M"                                                                                
+        √ formatImpactValue(1500000) should return "1.5M"                                                                              
+        √ formatImpactValue(2345678) should return "2.3M" (1 ms)                                                                       
+        √ formatImpactValue(999999999) should return "1000M"                                                                           
+      Billions (B) Formatting                                                                                                          
+        √ formatImpactValue(1000000000) should return "1B"                                                                             
+        √ formatImpactValue(1500000000) should return "1.5B"                                                                           
+        √ formatImpactValue(2345678901) should return "2.3B"                                                                           
+        √ formatImpactValue(999999999999) should return "1000B"                                                                        
+      Trillions (T) Formatting                                                                                                         
+        √ formatImpactValue(1000000000000) should return "1T"                                                                          
+        √ formatImpactValue(1500000000000) should return "1.5T"                                                                        
+        √ formatImpactValue(2345678901234) should return "2.3T"                                                                        
+      Very Large Numbers (>1T)                                                                                                         
+        √ should format Petabytes (P)                                                                                                  
+        √ should format Exabytes (E)                                                                                                   
+        √ should format Zettabytes (Z)                                                                                                 
+        √ should format Yottabytes (Y)                                                                                                 
+        √ should handle numbers beyond Yottabytes without overflow (1 ms)                                                              
+      Very Small Decimals (<0.001)                                                                                                     
+        √ should preserve precision for very small decimals                                                                            
+        √ should format 0.001 with appropriate precision                                                                               
+        √ should format 0.01 with appropriate precision                                                                                
+        √ should format 0.05 correctly                                                                                                 
+        √ should handle extremely small values (scientific notation) (1 ms)                                                            
+      Negative Values                                                                                                                  
+        √ should format negative integers with minus sign                                                                              
+        √ should format negative thousands with K suffix                                                                               
+        √ should format negative millions with M suffix                                                                                
+        √ should format negative billions with B suffix (1 ms)                                                                         
+        √ should format negative trillions with T suffix                                                                               
+        √ should format negative small decimals                                                                                        
+      Boundary Values                                                                                                                  
+        √ should handle exactly 1000                                                                                                   
+        √ should handle exactly 1 million                                                                                              
+        √ should handle exactly 1 billion                                                                                              
+        √ should handle exactly 1 trillion                                                                                             
+        √ should handle 999 without suffix                                                                                             
+        √ should handle 999.9 with proper rounding                                                                                     
+      Trailing Zeros Removal                                                                                                           
+        √ should remove trailing zero for 1.0 (1 ms)                                                                                   
+        √ should remove trailing zero for 100.0                                                                                        
+        √ should remove trailing zero for 1000 (1.0k)                                                                                  
+        √ should keep non-zero decimal for 1.5                                                                                         
+    formatImpactPercentage                                                                                                             
+      Edge Cases - Invalid Values                                                                                                      
+        √ should return "0%" for zero value                                                                                            
+        √ should return "0%" for null value
+        √ should return "0%" for undefined value                                                                                       
+        √ should return "0%" for NaN value                                                                                             
+      Basic Percentage Formatting                                                                                                      
+        √ should multiply decimal by 100 and add % sign                                                                                
+        √ should format 0.125 as 12.5%                                                                                                 
+        √ should format 1.0 as 100%                                                                                                    
+        √ should format 0.01 as 1%                                                                                                     
+      Very Small Percentages (<0.1%)                                                                                                   
+        √ should preserve precision for very small percentages                                                                         
+        √ should format 0.0001 (0.01%) with appropriate precision                                                                      
+        √ should format 0.00001 (0.001%) with high precision (1 ms)                                                                    
+        √ should handle extremely small percentages                                                                                    
+      Large Percentages (>100%)                                                                                                        
+        √ should format 2.0 as 200%                                                                                                    
+        √ should format 10.5 as 1050%                                                                                                  
+        √ should format very large percentage                                                                                          
+      Negative Percentages                                                                                                             
+        √ should format negative percentage with minus sign (1 ms)                                                                     
+        √ should format negative small percentage                                                                                      
+        √ should format negative very small percentage                                                                                 
+        √ should format negative large percentage                                                                                      
+      Decimal Precision                                                                                                                
+        √ formatImpactPercentage(0.123) should return "12.3%"                                                                          
+        √ formatImpactPercentage(0.456) should return "45.6%"                                                                          
+        √ formatImpactPercentage(0.789) should return "78.9%"                                                                          
+        √ formatImpactPercentage(0.999) should return "99.9%"                                                                          
+      Trailing Zeros Removal                                                                                                           
+        √ should remove trailing zero for 10.0% (1 ms)                                                                                 
+        √ should remove trailing zero for 50.0%                                                                                        
+        √ should remove trailing zero for 100.0%                                                                                       
+        √ should keep non-zero decimal for 12.5%                                                                                       
+      Boundary Values                                                                                                                  
+        √ should handle exactly 0.001 (0.1%)                                                                                           
+        √ should handle exactly 0.01 (1%)                                                                                              
+        √ should handle exactly 0.1 (10%)                                                                                              
+        √ should handle exactly 1.0 (100%)                                                                                             
+      Rounding Behavior                                                                                                                
+        √ should round to 1 decimal place for normal percentages                                                                       
+        √ should round up when appropriate                                                                                             
+        √ should round down when appropriate                                                                                           
+                                                                                                                                       
+ PASS  __tests__/unit/services/metrics/metricsComparison.service.test.js                                                               
+  MetricsComparisonService
+    calculateBreakupForRatioMetrics
+      Happy Path - Valid Data                                                                                                          
+        √ should calculate ratio metrics correctly for single timestamp (3 ms)                                                         
+        √ should calculate ratio metrics for multiple dimensions (1 ms)                                                                
+        √ should calculate ratio metrics for multiple timestamps (1 ms)                                                                
+      Edge Cases - Division by Zero                                                                                                    
+        √ should handle division by zero gracefully                                                                                    
+        √ should handle all-zero denominators (1 ms)                                                                                   
+      Edge Cases - Empty Arrays                                                                                                        
+        √ should return empty data array when numerator is empty                                                                       
+        √ should handle empty dimension arrays                                                                                         
+      Edge Cases - Null Values                                                                                                         
+        √ should handle null sum_kpi gracefully (1 ms)                                                                                 
+      Edge Cases - Mismatched Array Lengths                                                                                            
+        √ should handle numerator longer than denominator by using offset calculation                                                  
+        √ should handle multiple numerator entries with longer denominator array (1 ms)                                                
+      Complex Scenarios                                                                                                                
+        √ should handle multiple dimensions across multiple timestamps (1 ms)                                                          
+    getSortedDimensionsBreakup                                                                                                         
+      Happy Path - Valid Sorting                                                                                                       
+        √ should sort dimensions based on sort order array                                                                             
+        √ should maintain sort order with single element (1 ms)                                                                        
+        √ should sort correctly with many dimensions                                                                                   
+      Edge Cases - Null Values                                                                                                         
+        √ should handle null dimension names in sort order (1 ms)                                                                      
+        √ should handle multiple null values                                                                                           
+      Edge Cases - Empty Arrays                                                                                                        
+        √ should return empty array when input is empty                                                                                
+        √ should handle empty sort order with data present                                                                             
+      Edge Cases - Missing Dimensions                                                                                                  
+        √ should handle dimensions not in sort order (1 ms)                                                                            
+        √ should place known dimensions before unknown ones                                                                            
+      Stability - Original Array Modification                                                                                          
+        √ should modify the original array (sort in place) (1 ms)                                                                      
+    getDefaultTimeRange                                                                                                                
+      Happy Path - Data Available                                                                                                      
+        √ should calculate time range based on last data timestamp for daily frequency (1 ms)                                          
+        √ should calculate time range for hourly frequency (1 ms)                                                                      
+        √ should calculate time range for weekly frequency                                                                             
+        √ should calculate time range for monthly frequency                                                                            
+      Fallback - No Data Available                                                                                                     
+        √ should use current time when no data is returned (empty array) (1 ms)                                                        
+        √ should use current time when status is not 200                                                                               
+      Edge Cases - Null Values                                                                                                         
+        √ should handle null dimension name                                                                                            
+        √ should handle null metric category (1 ms)                                                                                    
+      Integration with executeQueryWithFallback                                                                                        
+        √ should call executeQueryWithFallback with correct parameters                                                                 
+      Boundary Cases - Date Calculations                                                                                               
+        √ should handle month boundaries correctly                                                                                     
+        √ should handle year boundaries correctly (1 ms)                                                                               
+      All Frequency Types                                                                                                              
+        √ should calculate correct range for frequency "h" with range 2 days                                                           
+        √ should calculate correct range for frequency "d" with range 7 days                                                           
+        √ should calculate correct range for frequency "w" with range 30 days                                                          
+        √ should calculate correct range for frequency "m" with range 90 days (1 ms)                                                   
+                                                                                                                                       
+Test Suites: 2 passed, 2 total
+Tests:       121 passed, 121 total
+Snapshots:   0 total
+Time:        2.723 s, estimated 3 s
+Ran all test suites.
